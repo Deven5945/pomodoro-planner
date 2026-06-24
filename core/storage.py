@@ -22,4 +22,7 @@ class JsonStore:
 
     def save(self, data: list[dict[str, Any]]) -> None:
         ensure_parent_dir(self.path)
+        if not data:
+            self.path.write_text("", encoding="utf-8")
+            return
         self.path.write_text(json.dumps(to_serializable(data), indent=2), encoding="utf-8")

@@ -18,8 +18,7 @@ def test_pomodoro_session_advances_phases():
 def test_pomodoro_session_uses_long_break_after_four_rounds():
     session = PomodoroSession(work_minutes=25, short_break_minutes=5, long_break_minutes=15)
 
-    for _ in range(4):
-        session.complete_current_phase()
+    for _ in range(7):
         session.complete_current_phase()
 
     assert session.current_phase == "long_break"

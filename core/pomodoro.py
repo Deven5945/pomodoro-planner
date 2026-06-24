@@ -28,7 +28,7 @@ class PomodoroSession:
     def complete_current_phase(self) -> str:
         if self.current_phase == "work":
             self.completed_work_rounds += 1
-            if self.completed_work_rounds >= 4:
+            if self.completed_work_rounds % 4 == 0:
                 self.current_phase = "long_break"
                 self.time_left = self.long_break_minutes * 60
             else:

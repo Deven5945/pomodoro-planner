@@ -1,7 +1,6 @@
 from __future__ import annotations
 
-from dataclasses import dataclass, field
-from datetime import datetime
+from dataclasses import dataclass
 from typing import List
 
 from config import PLANNER_DATA_PATH
@@ -13,13 +12,18 @@ class Task:
     id: int
     title: str
     completed: bool = False
-    created_at: str = field(default_factory=lambda: datetime.now().isoformat())
 
 
 class Planner:
     def __init__(self, storage_path: str | None = None) -> None:
         self.storage = JsonStore(storage_path or PLANNER_DATA_PATH)
-        self.tasks: List[Task] = [Task(**item) for item in self.storage.load()]
+        self.tasks: List[Task] = []
+        for item in self.storage.load():
+            if item.get("completed", False):
+                continue
+            self.tasks.append(
+                Task(id=item["id"], title=item["title"], completed=item.get("completed", False))
+            )
         self._next_id = max((task.id for task in self.tasks), default=0) + 1
 
     def add_task(self, title: str) -> Task:
@@ -44,4 +48,7 @@ class Planner:
         return None
 
     def _persist(self) -> None:
-        self.storage.save([task.__dict__ for task in self.tasks])
+        self.storage.save([
+            {"id": task.id, "title": task.title}
+            for task in self.active_tasks()
+        ])

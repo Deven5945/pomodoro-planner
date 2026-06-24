@@ -30,6 +30,7 @@ class PomodoroPlannerApp:
 
         main = ctk.CTkFrame(self.root, corner_radius=12)
         main.pack(fill="both", expand=True, padx=12, pady=12)
+        main.pack_propagate(False)
 
         ctk.CTkLabel(main, text="Pomodoro Planner", font=("Segoe UI", 20, "bold")).pack(anchor="w", pady=(0, 12))
 
@@ -54,6 +55,7 @@ class PomodoroPlannerApp:
 
         self.task_list = ctk.CTkScrollableFrame(task_frame, height=180)
         self.task_list.pack(fill="both", expand=True, padx=12, pady=(0, 12))
+        self.task_list.pack_propagate(False)
         self.task_list.bind("<Double-1>", lambda _event: self.complete_selected_task())
 
     def add_task(self) -> None:
@@ -87,12 +89,12 @@ class PomodoroPlannerApp:
         self.running = not self.running
         self.start_pause_button.configure(text="Pause" if self.running else "Start")
         if self.running:
-            self._tick_timer()
+            self._tick_loop()
         elif self.timer_id is not None:
             self.root.after_cancel(self.timer_id)
             self.timer_id = None
 
-    def _tick_timer(self) -> None:
+    def _tick_loop(self) -> None:
         if not self.running:
             return
 
@@ -102,15 +104,11 @@ class PomodoroPlannerApp:
         if self.session.time_left <= 0:
             self.session.complete_current_phase()
             self.refresh_timer()
-            if self.running:
-                self.running = True
-                self.start_pause_button.configure(text="Pause")
-                self.timer_id = self.root.after(1000, self._tick_timer)
-            else:
-                self.start_pause_button.configure(text="Start")
+            self.running = False
+            self.start_pause_button.configure(text="Start")
             return
 
-        self.timer_id = self.root.after(1000, self._tick_timer)
+        self.timer_id = self.root.after(1000, self._tick_loop)
 
     def advance_phase(self) -> None:
         if self.timer_id is not None:

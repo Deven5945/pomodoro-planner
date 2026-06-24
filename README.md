@@ -18,5 +18,5 @@ python main.py
 This project is a lightweight personal planner for managing focus sessions.
 
 ## Makers
-Deven5945 - Conceptualizing, Back-end, Some UI Features
+Deven5945 - Conceptualizing, Back-end, Some UI Features <br>
 Github Copilot - Front-end, Optimization, Write README

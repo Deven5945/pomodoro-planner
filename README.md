@@ -1,22 +1,41 @@
 # Pomodoro Planner
 
-A simple Pomodoro timer app with planning features.
+A lightweight Pomodoro timer and task planner built with Python and CustomTkinter.
 
 ## Features
-- Start and stop Pomodoro sessions
-- Track planned tasks
-- Save your progress locally
 
-## Run
-Run the app with:
+- Pomodoro timer
+- Task management
+- Local data persistence
 
-```bash
-python main.py
-```
+## Screenshots
 
-## Notes
-This project is a lightweight personal planner for managing focus sessions.
+<img width="912" height="876" alt="image" src="https://github.com/user-attachments/assets/4179d86a-0a1b-4c95-b875-33dd8c1c2b50" />
 
-## Makers
-Deven5945 - Conceptualizing, Back-end, Some UI Features <br>
-Github Copilot - Front-end, Optimization, Write README
+## Why I Built This
+
+I just wanted a simple Pomodoro and planner for personal use.
+
+I needed to use Pomodoro and planner simultaneously, so I built a lightweight desktop application that combines task planning and the Pomodoro technique.
+
+## Tech Stack
+
+- Python
+- CustomTkinter
+- JSON Storage
+
+## Data Storage
+
+Planner and Pomodoro data are stored locally as JSON files.
+
+No cloud services or external databases are required.
+
+## Future Plans
+
+- Task breakdown using local/API LLMs
+- Session statistics
+- Better task management
+
+## Known Issues
+
+- Korean IME composition text may appear smaller while typing on some Windows systems.

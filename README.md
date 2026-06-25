@@ -20,7 +20,7 @@ Planner and Pomodoro data are stored locally in AppData as JSON files.
 - Task breakdown with local/API LLMs (Considering Qwen2.5:3B as local LLM)
 - Session statistics
 - Add sounds & notifications
-- Time customization(that's why ***pomodoro_config.json*** exists)
+- Time customization(that's why ***pomodoro_data.json*** exists)
 
 ## Known Issues
 

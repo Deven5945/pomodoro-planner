@@ -16,13 +16,13 @@ Planner and Pomodoro data are stored locally in AppData as JSON files.
 
 ## Future Plans
 
-- Build Executable (soon, after doing some tests)
+- Building Executable (soon, after doing some tests)
 - Task breakdown with local/API LLMs (Considering Qwen2.5:3B as local LLM)
 - Session statistics
-- Add sounds & notifications
-- Time customization(that's why ***pomodoro_data.json*** exists)
+- Adding sounds & notifications
+- Time setting(that's why ***pomodoro_data.json*** exists)
 
 ## Known Issues
 
 - Korean IME composition text may appear smaller while typing on some Windows systems.
-- Lagging(I'm trying to fix it)
+- Lagging (I'm trying to fix it)

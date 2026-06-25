@@ -21,24 +21,24 @@ class PomodoroSession:
         self.time_left = work_minutes * 60
         self.completed_work_rounds = 0
 
-    def tick(self, seconds: int) -> int:
-        self.time_left = max(0, self.time_left - seconds)
+    def tick(self, sec: int) -> int:
+        self.time_left = max(0, self.time_left - sec)
         return self.time_left
 
-    def complete_current_phase(self) -> str:
-        if self.current_phase == "work":
-            self.completed_work_rounds += 1
-            if self.completed_work_rounds % 4 == 0:
-                self.current_phase = "long_break"
-                self.time_left = self.long_break_minutes * 60
+    def complete_current_phase(self) -> str: #페이즈 끝났을때
+        if self.current_phase == "work": #현재 상태 일이면
+            self.completed_work_rounds += 1 #라운드 1추가
+            if self.completed_work_rounds % 4 == 0: #라운드 4 되면
+                self.current_phase = "long_break" #긴 휴식
+                self.time_left = self.long_break_minutes * 60 #초 추가
             else:
-                self.current_phase = "short_break"
-                self.time_left = self.short_break_minutes * 60
-        elif self.current_phase == "short_break":
-            self.current_phase = "work"
-            self.time_left = self.work_minutes * 60
-        elif self.current_phase == "long_break":
-            self.current_phase = "work"
-            self.time_left = self.work_minutes * 60
-            self.completed_work_rounds = 0
-        return self.current_phase
+                self.current_phase = "short_break" #짧은 휴식
+                self.time_left = self.short_break_minutes * 60 #초 추가
+        elif self.current_phase == "short_break": #현재 상태 짧은 휴식이면
+            self.current_phase = "work" #일하시오
+            self.time_left = self.work_minutes * 60 #초 추가
+        elif self.current_phase == "long_break": #현재 상태 긴 휴식이면
+            self.current_phase = "work" #일하거라
+            self.time_left = self.work_minutes * 60 #초 추가
+            self.completed_work_rounds = 0 #라운드 초기화
+        return self.current_phase #상태 반환

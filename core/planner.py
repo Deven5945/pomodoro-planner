@@ -8,13 +8,13 @@ from core.storage import JsonStore
 
 
 @dataclass
-class Task:
+class Task: #데이터 클래스
     id: int
     title: str
     completed: bool = False
 
 
-class Planner:
+class Planner: #플래너 클래스
     def __init__(self, storage_path: str | None = None) -> None:
         self.storage = JsonStore(storage_path or PLANNER_DATA_PATH)
         self.tasks: List[Task] = []

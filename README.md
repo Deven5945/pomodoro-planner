@@ -21,6 +21,7 @@ No cloud services or external databases are required.
 - Build Executable (soon, after doing some tests)
 - Task breakdown with local/API LLMs (Considering Qwen2.5:3B or 7B as local LLM)
 - Session statistics
+- Add sounds & notifications 
 
 ## Known Issues
 

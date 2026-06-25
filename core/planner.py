@@ -17,38 +17,38 @@ class Task: #데이터 클래스
 class Planner: #플래너 클래스
     def __init__(self, storage_path: str | None = None) -> None:
         self.storage = JsonStore(storage_path or PLANNER_DATA_PATH)
-        self.tasks: List[Task] = []
-        for item in self.storage.load():
-            if item.get("completed", False):
+        self.tasks: List[Task] = [] #작업 리스트 설정
+        for item in self.storage.load(): #저장소 데이터 꺼내기
+            if item.get("completed", False): #완료 작업 무시
                 continue
             self.tasks.append(
-                Task(id=item["id"], title=item["title"], completed=item.get("completed", False))
+                Task(id=item["id"], title=item["title"], completed=item.get("completed", False)) #작업 생성
             )
-        self._next_id = max((task.id for task in self.tasks), default=0) + 1
+        self._next_id = max((task.id for task in self.tasks), default=0) + 1 #다음 id 계산
 
     def add_task(self, title: str) -> Task:
         task = Task(id=self._next_id, title=title)
-        self._next_id += 1
-        self.tasks.append(task)
-        self._persist()
+        self._next_id += 1 #id 번호 증가
+        self.tasks.append(task) #작업 추가
+        self._persist() #데이터 저장
         return task
 
     def active_tasks(self) -> List[Task]:
-        return [task for task in self.tasks if not task.completed]
+        return [task for task in self.tasks if not task.completed] #미완료 작업만 반환
 
     def completed_tasks(self) -> List[Task]:
-        return [task for task in self.tasks if task.completed]
+        return [task for task in self.tasks if task.completed] #완료 작업만 반환
 
     def complete_task(self, task_id: int) -> Task | None:
         for task in self.tasks:
             if task.id == task_id and not task.completed:
-                task.completed = True
+                task.completed = True #완료 처리
                 self._persist()
                 return task
         return None
 
     def _persist(self) -> None:
         self.storage.save([
-            {"id": task.id, "title": task.title}
+            {"id": task.id, "title": task.title} #id와 타이틀만 저장(추후 분석용으로 타임스탬프 저장 예정)
             for task in self.active_tasks()
         ])

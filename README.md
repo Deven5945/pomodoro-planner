@@ -19,6 +19,7 @@ Planner data are stored locally in AppData as JSON files.
 Needed libraries
 - CustomTkinter
 - Pytest (For tests. Not required for general use.)
+
 And then
 ```
 python main.py

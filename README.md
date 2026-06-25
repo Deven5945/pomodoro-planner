@@ -1,6 +1,6 @@
 # Pomodoro Planner
 
-A lightweight Pomodoro timer and task planner built with Python and CustomTkinter.
+A Simple Pomodoro timer and Planner built with Python and CustomTkinter.
 
 ## Features
 
@@ -12,7 +12,17 @@ A lightweight Pomodoro timer and task planner built with Python and CustomTkinte
 
 ## Data Saving
 
-Planner and Pomodoro data are stored locally in AppData as JSON files.
+Planner data are stored locally in AppData as JSON files.
+
+## How To Use
+
+Needed libraries
+- CustomTkinter
+- Pytest (For tests. Not required for general use.)
+And then
+```
+python main.py
+```
 
 ## Future Plans
 
@@ -25,4 +35,4 @@ Planner and Pomodoro data are stored locally in AppData as JSON files.
 ## Known Issues
 
 - Korean IME composition text may appear smaller while typing on some Windows systems.
-- Lagging (I'm trying to fix it)
+- Lagging when stretching the window and scrolling (I'm trying to fix it)

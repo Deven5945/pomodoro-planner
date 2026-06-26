@@ -32,6 +32,7 @@ python main.py
 - Session statistics
 - Adding sounds & notifications
 - Time setting(that's why ***pomodoro_data.json*** exists)
+- App design (after learning Figma)
 
 ## Known Issues
 

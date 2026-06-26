@@ -22,8 +22,8 @@ class PomodoroSession:
         self.completed_work_rounds = 0
 
     def tick(self, sec: int) -> int:
-        self.time_left = max(0, self.time_left - sec)
-        return self.time_left
+        self.time_left = max(0, self.time_left - sec) #남은시간 감소
+        return self.time_left #반환
 
     def complete_current_phase(self) -> str: #페이즈 끝났을때
         if self.current_phase == "work": #현재 상태 일이면
